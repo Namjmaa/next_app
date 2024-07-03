@@ -6,15 +6,15 @@ import Post, { PostProps } from "../components/Post"
 
 export const getStaticProps: GetStaticProps = async () => {
   const feed = await prisma.post.findMany({
-    where: {published: true},
+    where: { published: true },
     include: {
       author: {
-        select: {name: true},
+        select: { name: true },
       },
     },
   });
-  return { 
-    props: { feed }, 
+  return {
+    props: { feed },
     revalidate: 10,
   };
 };
